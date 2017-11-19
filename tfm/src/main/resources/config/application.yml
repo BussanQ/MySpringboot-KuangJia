@@ -1,27 +1,19 @@
+server:
+    port: 8080
 spring:
   application:
-    name: tfm
-  rabbitmq:
-#    host: 10.2.111.89
-    host: 10.2.112.19
-    port: 5672
-#    username: admin
-#    password: admin
-    username: ehl
-    password: ehl1234
+    name: AlphaBoot
+#  mvc:
+#    view:
+#      prefix: /cnbeta
+#      suffix: .html
   #数据库连接
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:oracle:thin:@10.2.111.235:1521/orcl
-    username: ehl_application
-    password: ehl1234
-    driverClassName: oracle.jdbc.driver.OracleDriver
-    ehlpublic:
-      type: com.alibaba.druid.pool.DruidDataSource
-      url: jdbc:oracle:thin:@10.2.111.235:1521/orcl
-      username: ehl_public
-      password: ehl1234
-      driverClassName: oracle.jdbc.driver.OracleDriver
+    url: jdbc:mysql://60.205.214.67:3306/alpha?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8
+    username: root
+    password: bussan2323
+    driverClassName: com.mysql.jdbc.Driver
     # 下面为连接池的补充设置，应用到上面所有数据源中
     # 初始化大小，最小，最大
     initialSize: 5
@@ -46,17 +38,34 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
     # 合并多个DruidDataSource的监控数据
     #useGlobalDataSourceStat: true
-
-#  kafka:
-#    bootstrap-servers: 10.2.111.247:9092,10.2.111.248:9092,10.2.111.249:9092
-#    consumer:
-#      group-id: tfm
-#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-#      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-#    producer:
-#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-#      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.bussnaq.group.alpha.bean
+  global-config:
+    #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+    id-type: 2
+    #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+    field-strategy: 2
+    #驼峰下划线转换
+    db-column-underline: true
+    #刷新mapper 调试神器
+    refresh-mapper: true
+    #数据库大写下划线转换
+    #capital-mode: true
+    #序列接口实现类配置
+    #key-generator: com.baomidou.springboot.xxx
+    #逻辑删除配置
+    logic-delete-value: 0
+    logic-not-delete-value: 1
+    #自定义填充策略接口实现
+    #meta-object-handler: com.baomidou.springboot.xxx
+    #自定义SQL注入器
+    #sql-injector: com.baomidou.springboot.xxx
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
 
 
 
