@@ -1,6 +1,7 @@
 package com.bussnaq.group.alpha.common.conf;
 
 import com.jfinal.template.ext.spring.JFinalViewResolver;
+import com.jfinal.template.source.ClassPathSourceFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,6 +15,7 @@ public class EnjoyConfig {
 	public JFinalViewResolver getJFinalViewResolver(){
 		JFinalViewResolver jf = new JFinalViewResolver();
 		jf.setDevMode(true);
+		jf.setSourceFactory(new ClassPathSourceFactory());
 //		jf.setPrefix("/cnbeta");
 		jf.setSuffix(".html");
 		jf.setContentType("text/html;charset=UTF-8");
