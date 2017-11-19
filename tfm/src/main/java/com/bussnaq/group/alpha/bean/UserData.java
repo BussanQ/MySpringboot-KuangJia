@@ -1,5 +1,7 @@
 package com.bussnaq.group.alpha.bean;
 
+import com.baomidou.mybatisplus.annotations.TableId;
+
 import java.util.Date;
 
 /**
@@ -9,6 +11,7 @@ import java.util.Date;
 public class UserData {
 	String url;
 	Date updatetime;
+	@TableId
 	String userid;
 	String title;
 
