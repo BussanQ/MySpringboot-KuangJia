@@ -11,12 +11,13 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class EnjoyConfig {
+
 	@Bean(name = "jfinalViewResolver")
 	public JFinalViewResolver getJFinalViewResolver(){
 		JFinalViewResolver jf = new JFinalViewResolver();
 		jf.setDevMode(true);
 		jf.setSourceFactory(new ClassPathSourceFactory());
-//		jf.setPrefix("/cnbeta");
+		jf.setPrefix("/templates");
 		jf.setSuffix(".html");
 		jf.setContentType("text/html;charset=UTF-8");
 		jf.setOrder(0);

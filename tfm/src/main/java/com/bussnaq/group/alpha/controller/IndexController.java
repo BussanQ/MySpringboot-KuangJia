@@ -10,4 +10,9 @@ public class IndexController {
 	public String index() {
 		return "/cnbeta/showList";
 	}
+
+	@RequestMapping(value = "/404")
+	public String ee() {
+		return "/404";
+	}
 }

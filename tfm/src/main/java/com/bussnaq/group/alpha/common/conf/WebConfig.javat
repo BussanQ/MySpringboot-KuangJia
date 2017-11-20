@@ -1,0 +1,31 @@
+package com.bussnaq.group.alpha.common.conf;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+/**
+ * @author lizh
+ * @date 2017/11/20
+ */
+@Configuration
+@EnableWebMvc
+public class WebConfig extends WebMvcConfigurerAdapter {
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/**").addResourceLocations("/");
+	}
+
+	/*@Bean(name = "jfinalViewResolver")
+	public JFinalViewResolver getJFinalViewResolver(){
+		JFinalViewResolver jf = new JFinalViewResolver();
+		jf.setDevMode(true);
+		jf.setSourceFactory(new ClassPathSourceFactory());
+//		jf.setPrefix("/templates");
+		jf.setSuffix(".html");
+		jf.setContentType("text/html;charset=UTF-8");
+		jf.setOrder(0);
+		return jf;
+	}*/
+}
