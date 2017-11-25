@@ -6,90 +6,37 @@
 		<title>cnbeta</title>
 		<link rel="stylesheet" href="/css/weui.min.css">
 		<link rel="stylesheet" href="//cdn.bootcss.com/jquery-weui/1.0.0/css/jquery-weui.min.css">
+		<link rel="stylesheet" href="/plugins/mescroll/mescroll.min.css">
+		<link rel="stylesheet" href="/plugins/mescroll/option/mescroll-option.css">
 		<!-- <link href="//cdn.bootcss.com/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet"> -->
 	</head>
 	<body>
-		<!-- <header data-am-widget="header"
-			class="am-header am-header-default am-header-fixed">
-			<div class="am-header-left am-header-nav">
-				<a href="/Alpha/mvc/showList" class=""> <i
-					class="am-header-icon am-icon-home"></i>
-				</a>
-			</div>
-	
-			<h1 class="am-header-title">
-				<a href="#title-link" class=""> BussanQ </a>
-			</h1>
-	
-			<div class="am-header-right am-header-nav">
-				<a href="#right-link" class=""> <i
-					class="am-header-icon am-icon-bars"></i>
-				</a>
-			</div>
-		</header> -->
 		<div class="weui-panel weui-panel_access">
-		  <div class="weui-panel__hd">资讯列表</div>
-		  <div class="weui-panel__bd"  id="dot-body">
-		
-		  <script id="pagetmpl" type="text/x-dot-template"> 
-                {{for(var i=0; i < it.length ; i++){ }}  
-                    <a href="/jsoupUrl/getArticle?url={{=it[i].link}}&title={{=it[i].title}}" class="weui-media-box weui-media-box_appmsg">
-						<div class="weui-media-box__hd">
-						<img class="weui-media-box__thumb" src="">
-			  			</div>
-						<div class="weui-media-box__bd">
-						<h4 class="weui-media-box__title"></h4>
-						<p class="weui-media-box__desc">{{=it[i].title}}</p>
-						</div>
-					</a>               
-                {{ } }}
-            </script>		  
-			<!-- <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-			  <div class="weui-media-box__hd">
-				<img class="weui-media-box__thumb" src="">
-			  </div>
-			  <div class="weui-media-box__bd">
-				<h4 class="weui-media-box__title">标题二</h4>
-				<p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
-			  </div>
-			</a> -->
-		  </div>
-		  <!-- <div class="weui-panel__ft">
-			<a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
-			  <div class="weui-cell__bd">查看更多</div>
-			  <span class="weui-cell__ft"></span>
-			</a>    
-		  </div> -->
+			<div class="weui-panel__hd">资讯列表</div>
+			<div id="mescroll" class="mescroll">
+				<div class="weui-panel__bd"  id="dot-body">
+					<script id="pagetmpl" type="text/x-dot-template">
+						{{for(var i=0; i < it.length ; i++){ }}
+							<a href="/jsoupUrl/getArticle?url={{=it[i].link}}&title={{=it[i].title}}" class="weui-media-box weui-media-box_appmsg">
+								<div class="weui-media-box__hd">
+								<img class="weui-media-box__thumb" src="/images/img/{{=it[i].img}}.jpg">
+								</div>
+								<div class="weui-media-box__bd">
+								<h4 class="weui-media-box__title"></h4>
+								<p class="weui-media-box__desc">{{=it[i].title}}</p>
+								</div>
+							</a>
+						{{ } }}
+					</script>
+				</div>
+			</div>
 		</div>
 		<script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 		<script src="//cdn.bootcss.com/jquery-weui/1.0.0/js/jquery-weui.min.js"></script>
-		<script src="//cdn.bootcss.com/dot/1.1.0/doT.min.js"></script>		
+		<script src="//cdn.bootcss.com/dot/1.1.0/doT.min.js"></script>
+		<script src="/plugins/mescroll/mescroll.min.js"></script>
+		<script src="/plugins/mescroll/option/mescroll-option.js"></script>
+		<script src="/js/cnbeta/showList.js"></script>
 		<!-- <script src="//cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min.js"></script> -->
-		<script type="application/javascript">
-		  //  <a href="javascript:getJsoup('{{=it[i].link}}')" class="weui-media-box weui-media-box_appmsg">
-		function getJsoup(url){
-			window.location.href="/jsoupUrl/showHtml?url=123";
-			//$.post('/Alpha/jsoupUrl/showHtml',{data:url});
-		}
-			
-		    $.ajax({
-		        type: "POST",
-		        url: '/rss/rssList',
-		        dataType: 'json', //当这里指定为json的时候，获取到了数据后会自己解析的，只需要 返回值.字段名称 就能使用了
-		        cache: false,
-		        success: function (data) {
-		            if (data.length>0) {
-		            	
-		                pagefn = doT.template($("#pagetmpl").html());   //初始化列表模板
-		                updateList(data);   //更新数据             
-		            }
-		        }
-		    });
-		
-		    function updateList(data) {
-		        $("#pagetmpl").empty(); //清空模板数据
-		        $("#dot-body").html(pagefn(data));   //加入数据到模板
-		    }
-		</script>
 	</body>	
 </html>

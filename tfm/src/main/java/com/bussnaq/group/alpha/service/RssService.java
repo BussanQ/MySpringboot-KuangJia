@@ -6,6 +6,8 @@ import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -17,6 +19,11 @@ import java.util.zip.GZIPInputStream;
 
 @Service
 public class RssService {
+
+	Logger logger = LoggerFactory.getLogger(RssService.class);
+
+	private ThreadLocal<List<New>> listThreadLocal = new ThreadLocal<>();
+	private List<New> lists;
 
 	/**
 	 * 根据链接地址得到数据
@@ -49,10 +56,25 @@ public class RssService {
 			}
 			//System.out.println("feed size:" + feed.getEntries().size());
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		} finally {
-			return list;// 得到所有的
+			listThreadLocal.set(list);
+			lists = list;
+			return list.subList(0,10);// 得到所有的
 		}
 	}
+
+	public List<New> getPage(int pageNum,int pageSize){
+//		List<New> list = listThreadLocal.get();
+		if (lists==null){
+			return new ArrayList<>();
+		}
+		int to = (pageNum+1)*pageSize;
+		int s = pageNum * pageSize;
+		if(to > lists.size())
+			return new ArrayList<>();
+		return lists.subList(s,to);
+	}
+
 
 }
