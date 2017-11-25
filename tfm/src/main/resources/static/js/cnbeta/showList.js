@@ -76,7 +76,7 @@
             var html='<a href="/jsoupUrl/getArticle?url='+it.link+'&title='+it.title+'"' +
                 ' class="weui-media-box weui-media-box_appmsg">' +
                 ' <div class="weui-media-box__hd">' +
-                '  <img class="weui-media-box__thumb" src="/images/img/'+img+'.jpg">' +
+                '  <img class="weui-media-box__thumb" src="">' +
                 '  </div>' +
                 '  <div class="weui-media-box__bd">' +
                 '  <h4 class="weui-media-box__title"></h4>' +

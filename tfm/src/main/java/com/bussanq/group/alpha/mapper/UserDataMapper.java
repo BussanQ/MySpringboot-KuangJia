@@ -14,5 +14,5 @@ public interface UserDataMapper extends BaseMapper<UserData> {
 			"        (`url`,`title`,`updatetime`,`userid`)\n" +
 			"        select #{url},#{title},now(),#{userid} from dual\n" +
 			"        WHERE NOT EXISTS (SELECT 1 FROM user_data WHERE url = #{url} and userid=#{userid} limit 1)")
-	public int insertUni(UserData userData);
+	int insertUni(UserData userData);
 }

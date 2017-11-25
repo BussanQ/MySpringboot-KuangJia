@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -21,8 +22,6 @@ import java.util.zip.GZIPInputStream;
 public class RssService {
 
 	Logger logger = LoggerFactory.getLogger(RssService.class);
-
-	private ThreadLocal<List<New>> listThreadLocal = new ThreadLocal<>();
 	private List<New> lists;
 
 	/**
@@ -30,12 +29,16 @@ public class RssService {
 	 */
 	@SuppressWarnings("finally")
 	public List<New> parseXml(URL url) throws IllegalArgumentException, FeedException {
+		List<New> list = parseXmlMehtod(url);
+		return list.subList(0,10);
+	}
+
+	public List<New> parseXmlMehtod(URL url){
 		List<New> list = new ArrayList<New>();
 		try {
 			SyndFeedInput input = new SyndFeedInput();
 			SyndFeed feed = null;
-			URLConnection conn;
-			conn = url.openConnection();
+			URLConnection conn = url.openConnection();
 			String content_encoding = conn.getHeaderField("Content-Encoding");
 			if (content_encoding != null && content_encoding.contains("gzip")) {
 				System.out.println("conent encoding is gzip");
@@ -45,36 +48,36 @@ public class RssService {
 				feed = input.build(new XmlReader(conn.getInputStream()));
 			}
 			for (int i = 0; i < 50; i++) {
-				New new1 = new New();
+				New news = new New();
 				SyndEntry entry = (SyndEntry) feed.getEntries().get(i);
-				new1.setTitle(entry.getTitle());
-				new1.setLink(entry.getLink());
-				new1.setDescription(entry.getDescription().getValue());
+				news.setTitle(entry.getTitle());
+				news.setLink(entry.getLink());
+				news.setDescription(entry.getDescription().getValue());
 				entry.getDescription();
-				new1.setPubDate(entry.getPublishedDate());
-				list.add(new1);
+				news.setPubDate(entry.getPublishedDate());
+				list.add(news);
 			}
-			//System.out.println("feed size:" + feed.getEntries().size());
 		} catch (IOException e) {
 			logger.error(e.getMessage());
 		} finally {
-			listThreadLocal.set(list);
 			lists = list;
-			return list.subList(0,10);// 得到所有的
+			return list;// 得到所有的
 		}
 	}
 
 	public List<New> getPage(int pageNum,int pageSize){
-//		List<New> list = listThreadLocal.get();
-		if (lists==null){
-			return new ArrayList<>();
+		try {
+			if (lists == null) {
+				lists = parseXmlMehtod(new URL("http://rss.cnbeta.com/rss"));
+			}
+			int to = (pageNum + 1) * pageSize;
+			int from = pageNum * pageSize;
+			if (to <= lists.size())
+				return lists.subList(from, to);
 		}
-		int to = (pageNum+1)*pageSize;
-		int s = pageNum * pageSize;
-		if(to > lists.size())
-			return new ArrayList<>();
-		return lists.subList(s,to);
+		catch (MalformedURLException ex){
+			logger.error(ex.getMessage());
+		}
+		return new ArrayList<>();
 	}
-
-
 }
