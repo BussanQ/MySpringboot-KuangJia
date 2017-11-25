@@ -1,5 +1,5 @@
 server:
-    port: 8080
+    port: 9000
 spring:
   application:
     name: AlphaBoot
@@ -12,7 +12,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://localhost:3306/alpha?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8
     username: root
-    password: 
+    password:
     driverClassName: com.mysql.jdbc.Driver
     # 下面为连接池的补充设置，应用到上面所有数据源中
     # 初始化大小，最小，最大
@@ -49,7 +49,7 @@ mybatis-plus:
     #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
     field-strategy: 2
     #驼峰下划线转换
-    db-column-underline: true
+    db-column-underline: false
     #刷新mapper 调试神器
     refresh-mapper: true
     #数据库大写下划线转换
@@ -63,9 +63,9 @@ mybatis-plus:
     #meta-object-handler: com.baomidou.springboot.xxx
     #自定义SQL注入器
     #sql-injector: com.baomidou.springboot.xxx
-  configuration:
-    map-underscore-to-camel-case: true
-    cache-enabled: false
+#  configuration:
+#    map-underscore-to-camel-case: false
+#    cache-enabled: false
 
 
 
