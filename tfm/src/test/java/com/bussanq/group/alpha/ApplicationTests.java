@@ -1,4 +1,4 @@
-package com.ehl.ece.situation;
+package com.bussanq.group.alpha;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
