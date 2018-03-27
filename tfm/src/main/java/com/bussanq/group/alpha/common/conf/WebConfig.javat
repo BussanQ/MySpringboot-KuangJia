@@ -10,11 +10,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @date 2017/11/20
  */
 @Configuration
-@EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/**").addResourceLocations("/");
+		//将所有/static/** 访问都映射到classpath:/static/ 目录下		registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
 	}
 
 	/*@Bean(name = "jfinalViewResolver")
