@@ -1,5 +1,5 @@
 server:
-    port: 9000
+    port: 80
 spring:
   application:
     name: AlphaBoot
@@ -11,6 +11,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://localhost:3306/alpha?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8
+#    url: jdbc:mysql://139.199.110.20:3306/alpha?autoReconnect=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8
     username: root
     password:
     driverClassName: com.mysql.jdbc.Driver

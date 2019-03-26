@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.net.URL;
 import java.util.List;
 
 /**
@@ -30,8 +29,7 @@ public class ArticleCrawler {
 	@Scheduled(fixedDelay= 30 * 60 * 1000)
 	public void saveArticle(){
 		try{
-			URL u = new URL(url);
-			List<New> list = rssService.parseXmlMehtod(u);
+			List<New> list = rssService.parseXmlMehtod(url);
 			newService.insertOrUpdateBatch(list);
 		}
 		catch (Exception ex){

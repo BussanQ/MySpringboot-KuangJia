@@ -15,4 +15,14 @@ public class IndexController {
 	public String ee() {
 		return "/404";
 	}
+
+	@RequestMapping(value = "/500")
+	public String e500() {
+		return "/500";
+	}
+
+	@RequestMapping(value = "/403")
+	public String e403() {
+		return "/403";
+	}
 }

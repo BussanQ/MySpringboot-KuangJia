@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.net.URL;
 import java.util.List;
 
 @Controller
@@ -20,7 +19,7 @@ public class RssController {
 	@ResponseBody
 	public List<New> rssList()
 			throws Exception {
-		List<New> list = rssService.parseXml(new URL("http://rss.cnbeta.com/rss"));
+		List<New> list = rssService.parseXml("https://rss.cnbeta.com/rss");
 		return list;
 	}
 

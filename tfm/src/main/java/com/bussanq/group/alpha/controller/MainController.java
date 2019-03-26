@@ -48,15 +48,5 @@ public class MainController {
     public String home() {
         return "home";
     }
-    
-    /**
-     * 后台主页
-     *
-     * @return
-     */
-    @RequestMapping(value = "/error", method = RequestMethod.GET)
-    public String error() {
-        return "view/404.html";
-    }
 
 }

@@ -11,7 +11,7 @@ public class ErrorPagesController  implements ErrorController{
 
 	@RequestMapping(value = ERROR_PATH)
 	public String index() throws Exception {
-		return "/404";
+		return "/403";
 	}
 
 	@Override
