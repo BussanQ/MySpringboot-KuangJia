@@ -3,6 +3,8 @@ package com.bussanq.group.alpha.common.conf;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.jfinal.template.ext.spring.JFinalViewResolver;
+import com.jfinal.template.source.ClassPathSourceFactory;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.web.servlet.ErrorPage;
@@ -63,5 +65,21 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 				container.addErrorPages( error404Page, error500Page);
 			}
 		};
+	}
+
+	/**
+	 * enjoy模板引擎配置
+	 * @return
+	 */
+	@Bean(name = "jfinalViewResolver")
+	public JFinalViewResolver getJFinalViewResolver(){
+		JFinalViewResolver jf = new JFinalViewResolver();
+		jf.setDevMode(true);
+		jf.setSourceFactory(new ClassPathSourceFactory());
+		jf.setPrefix("/templates");
+		jf.setSuffix(".html");
+		jf.setContentType("text/html;charset=UTF-8");
+		jf.setOrder(0);
+		return jf;
 	}
 }
