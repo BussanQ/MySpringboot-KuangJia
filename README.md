@@ -1,5 +1,11 @@
 # MySpringboot-框架
 
-springboot架构 cnbeta资讯阅读网站
-springboot + amazeui + jfinal-enjoy+ mybatisplus+ sh
+#### 软件架构
+
+软件架构说明：
+- 核心框架：`SpringBoot1.5.3`
+-  amazeui + jfinal-enjoy+ mybatisplus+ sh
+
+#### 说明
+cnbeta资讯阅读网站
 最新完美版 冗余版
