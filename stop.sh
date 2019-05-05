@@ -15,19 +15,40 @@
 #
 #         确认好 pid 以后，使用 kill pid 关闭服务
 #         
-#         注意 kill 命令不要带 -9 这个参数，否则 jfinal 中的一些与服务关闭
-#         有关的回调方法将不会被回调，例如 JFinalConfig.beforeJFinalStop()
+#         注意 kill 命令不要带 -9 这个参数，否则一些与服务关闭
+#         有关的回调方法将不会被回调
 #
-# 4: 如果不需要上述的 beforeJFinalStop() 回调，使用 kill -9 可加快关闭服务的速度
+# 4: 如果不需要上述的 onStop() 回调，使用 kill -9 可加快关闭服务的速度
 #
 # ---------------------------------------------------------------------------
 
 # 启动入口类，该脚本文件用于别的项目时要改这里
 MAIN_CLASS=com.bussanq.group.alpha.Application
+SERVICE_NAME=AlphaBoot
+APP_BASE_PATH=$(cd `dirname $0`; pwd)
+PID_PATH_NAME=${APP_BASE_PATH}/${SERVICE_NAME}.pid
 
-# kill 命令不使用 -9 参数时，会回调 beforeJFinalStop() 方法，确定不需要此回调建议使用 -9 参数
-kill `pgrep -f ${MAIN_CLASS}` 2>/dev/null
+# kill 命令不使用 -9 参数时，会回调 onStop() 方法，确定不需要此回调建议使用 -9 参数
+#kill -9 `pgrep -f ${MAIN_CLASS}` 2>/dev/null
 
 # 以下代码与上述代码等价
 # kill $(pgrep -f ${MAIN_CLASS}) 2>/dev/null
 
+
+if [ -f "$PID_PATH_NAME" ]; then
+	PID=$(cat $PID_PATH_NAME);
+else
+	PID=0;
+fi
+if [ -d "/proc/$PID" ]; then
+	echo "$SERVICE_NAME stoping ..."
+	for p_pid in `ps -ef |grep $PID|egrep -v grep | awk '{print $2}'`
+	do
+	 kill -s 9 $p_pid
+	done
+	echo "$SERVICE_NAME stopped ..."
+	rm -f $PID_PATH_NAME
+	rm -f /var/lock/subsys/$SERVICE_NAME
+else
+	echo "$SERVICE_NAME is not running."
+fi
