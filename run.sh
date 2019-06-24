@@ -22,8 +22,8 @@
 # ---------------------------------------------------------------------------
 
 # 启动入口类，该脚本文件用于别的项目时要改这里
-MAIN_CLASS=com.bussanq.api.proj.core.MainConfig
-SERVICE_NAME=myapi
+MAIN_CLASS=com.bussanq.group.alpha.Application
+SERVICE_NAME=AlphaBoot
 
 COMMAND="$1"
 
