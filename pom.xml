@@ -116,12 +116,22 @@
 
 	</dependencies>
 	<build>
+		<!--jar包中的配置文件优先级高于 config 目录下的 "同名文件"，因此，打包时需要排除掉 jar 包中来自 src/main/resources
+        目录的配置文件，此处使用resources代替maven-jar-plugin配置，由于采用-cp配置加载外部文件夹，resources下所有文件不需要
+        打包到jar中-->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>**/*</exclude>
+				</excludes>
+			</resource>
+		</resources>
 		<plugins>
 			<!--<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>-->
-
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -131,24 +141,6 @@
 					<source>1.8</source>
 					<target>1.8</target>
 					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-
-			<!--
-				jar 包中的配置文件优先级高于 config 目录下的 "同名文件"
-				因此，打包时需要排除掉 jar 包中来自 src/main/resources 目录的
-				配置文件，否则部署时 config 目录中的同名配置文件不会生效
-			 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.6</version>
-				<configuration>
-					<excludes>
-						<exclude>*.txt</exclude>
-						<exclude>*.xml</exclude>
-						<exclude>*.properties</exclude>
-					</excludes>
 				</configuration>
 			</plugin>
 
