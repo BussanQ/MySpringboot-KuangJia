@@ -54,23 +54,13 @@
 			<version>1.2.38</version>
 		</dependency>
 		<!-- Spring Boot mybatis-plus begin -->
+		<!-- 会自动引入spring-boot-starter-jdbc和HikariCP-->
 		<dependency>
 			<groupId>com.baomidou</groupId>
-			<artifactId>mybatisplus-spring-boot-starter</artifactId>
-			<version>1.0.5</version>
-		</dependency>
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>mybatis-plus</artifactId>
-			<version>2.1.4</version>
+			<artifactId>mybatis-plus-boot-starter</artifactId>
+			<version>3.1.1</version>
 		</dependency>
 		<!-- mybatis-plus end -->
-		<!-- Druid 数据连接池依赖 -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>1.1.2</version>
-		</dependency>
 		<!-- 添加mysql驱动包 -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -101,7 +91,6 @@
 			<artifactId>enjoy</artifactId>
 			<version>4.2</version>
 		</dependency>
-
 	</dependencies>
 	<build>
 		<plugins>

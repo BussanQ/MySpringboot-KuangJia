@@ -1,6 +1,6 @@
 package com.bussanq.group.alpha.mapper;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.bussanq.group.alpha.bean.New;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
@@ -11,5 +11,5 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Mapper
-public interface NewMapper extends BaseMapper<New>{
+public interface NewMapper extends BaseMapper<New> {
 }

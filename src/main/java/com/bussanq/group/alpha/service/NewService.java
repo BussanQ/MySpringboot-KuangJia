@@ -1,6 +1,6 @@
 package com.bussanq.group.alpha.service;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.bussanq.group.alpha.bean.New;
 import com.bussanq.group.alpha.mapper.NewMapper;
 import org.springframework.stereotype.Service;
@@ -10,5 +10,5 @@ import org.springframework.stereotype.Service;
  * @date 2017/11/26
  */
 @Service
-public class NewService extends ServiceImpl<NewMapper,New>{
+public class NewService extends ServiceImpl<NewMapper,New> {
 }

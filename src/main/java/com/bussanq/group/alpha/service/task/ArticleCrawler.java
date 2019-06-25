@@ -30,7 +30,7 @@ public class ArticleCrawler {
 	public void saveArticle(){
 		try{
 			List<New> list = rssService.parseXmlMehtod(url);
-			newService.insertOrUpdateBatch(list);
+			newService.saveOrUpdateBatch(list);
 		}
 		catch (Exception ex){
 			logger.error("",ex);

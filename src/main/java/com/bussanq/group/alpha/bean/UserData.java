@@ -1,6 +1,7 @@
 package com.bussanq.group.alpha.bean;
 
-import com.baomidou.mybatisplus.annotations.TableId;
+
+import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.util.Date;
 
