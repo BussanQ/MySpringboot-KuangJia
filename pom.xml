@@ -51,7 +51,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.2.38</version>
+			<version>1.2.60</version>
 		</dependency>
 		<!-- Spring Boot mybatis-plus begin -->
 		<!-- 会自动引入spring-boot-starter-jdbc和HikariCP-->
@@ -89,7 +89,7 @@
 		<dependency>
 			<groupId>com.jfinal</groupId>
 			<artifactId>enjoy</artifactId>
-			<version>4.2</version>
+			<version>4.5</version>
 		</dependency>
 	</dependencies>
 	<build>
