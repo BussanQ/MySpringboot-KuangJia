@@ -25,7 +25,7 @@
     function downCallback(){
         $.ajax({
             type: "POST",
-            url: '/rss/rssList',
+            url: 'rss/rssList',
             dataType: 'json', //当这里指定为json的时候，获取到了数据后会自己解析的，只需要 返回值.字段名称 就能使用了
             cache: false,
             success: function (data) {
@@ -46,7 +46,7 @@
         getListDataFromNet(page.num, page.size, function(curPageData){
             //联网成功的回调,隐藏下拉刷新和上拉加载的状态;
             //mescroll会根据传的参数,自动判断列表如果无任何数据,则提示空;列表无下一页数据,则提示无更多数据;
-            console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
+            // console.log("page.num="+page.num+", page.size="+page.size+", curPageData.length="+curPageData.length);
 
             //方法一(推荐): 后台接口有返回列表的总页数 totalPage
             //mescroll.endByPage(curPageData.length, totalPage); //必传参数(当前页的数据个数, 总页数)
@@ -95,7 +95,7 @@
     function getListDataFromNet(pageNum,pageSize,successCallback,errorCallback) {
         $.ajax({
             type: "POST",
-            url: '/rss/rssListPage',
+            url: 'rss/rssListPage',
             dataType: 'json',
             data:{
                 pageNum:pageNum,

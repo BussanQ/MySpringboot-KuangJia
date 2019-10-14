@@ -88,7 +88,7 @@ function initMeScroll(mescrollId, options) {
 //				upwarp.innerHTML = mescroll.optUp.htmlNodata;
 //			},
 			toTop: {
-				src: "/plugins/mescroll/option/mescroll-totop.png" //回到顶部按钮的图片路径
+				src: "plugins/mescroll/option/mescroll-totop.png" //回到顶部按钮的图片路径
 			}
 		}
 	}
