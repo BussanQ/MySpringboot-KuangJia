@@ -73,7 +73,7 @@
         for (var i = 0; i < curPageData.length; i++) {
             var img = ""+Math.ceil(Math.random()*10);
             var it=curPageData[i];
-            var html='<a href="/jsoupUrl/getArticle?url='+it.link+'&title='+it.title+'"' +
+            var html='<a href="jsoupUrl/getArticle?url='+it.link+'&title='+it.title+'"' +
                 ' class="weui-media-box weui-media-box_appmsg">' +
                 ' <div class="weui-media-box__hd">' +
                 '  <img class="weui-media-box__thumb" src="">' +
