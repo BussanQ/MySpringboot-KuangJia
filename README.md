@@ -7,5 +7,5 @@
 -  amazeui + jfinal-enjoy+ mybatisplus+ sh
 
 #### 说明
-cnbeta资讯阅读网站
+资讯阅读网站
 最新完美版 冗余版
